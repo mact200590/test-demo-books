@@ -1,20 +1,18 @@
 import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
-import { CACHE_KEYS } from "../cache/cacheKeys";
-import { queryCLient } from "../cache/queryCLient";
-import ListCardContainer from "../component/Card/ListCardContainer";
+import { CACHE_KEYS } from "../modules/cache/cacheKeys";
+import { queryCLient } from "../modules/cache/queryCLient";
+import { Home } from "../component";
 import { useDeleteBooksMarksMutation } from "../modules/bookmarks/mutation";
 import { useGetAllBooksMarksQuery } from "../modules/bookmarks/query";
 import RoutesName from "../navigation/routesUtils";
 import { defaultAllBookmarks } from "../utils/defaultData";
 
-
 const HomeContainer = () => {
   const { push } = useHistory();
   const { mutate, loading: loadingDelete } = useDeleteBooksMarksMutation();
-  const { data: allBooks } = useGetAllBooksMarksQuery();
-
-  const onSuccess = useCallback((response: any) => {
+  const { data: allBooks, loading } = useGetAllBooksMarksQuery();
+  const onMutate = useCallback((response: any) => {
     queryCLient.invalidateQueries([CACHE_KEYS.BooksMarks.ALL_BOOKS_MARKS]);
   }, []);
 
@@ -24,33 +22,27 @@ const HomeContainer = () => {
         {
           id,
         },
-        { onSuccess }
+        { onSuccess: onMutate, onError: onMutate }
       );
     },
-    [mutate, onSuccess]
+    [mutate, onMutate]
   );
 
   const handleOnEdit = useCallback(
     (id: string) => {
-      queryCLient.setQueryData(
-        [CACHE_KEYS.BooksMarks.IS_NEW],
-        "false"
-      );
+      queryCLient.setQueryData([CACHE_KEYS.BooksMarks.IS_NEW], "false");
       push(`${RoutesName["/book-mark/edit"]}/${id}`);
     },
     [push]
   );
   return (
-    <div>
- 
-    <ListCardContainer
-      loadingDelete={loadingDelete}
+    <Home
       allBookMarks={allBooks || defaultAllBookmarks}
+      loading={loading}
+      loadingDelete={loadingDelete}
       handleDelete={handleDelete}
       handleOnEdit={handleOnEdit}
     />
-    </div>
-  
   );
 };
 
