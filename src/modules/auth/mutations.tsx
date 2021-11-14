@@ -7,7 +7,7 @@ interface Props {
   username: string;
   password: string;
 }
-
+//This is the function to make the request(POST)
 export const fetchSession = ({ username, password }: Props) =>
   fetchCreator({
     path: endpointRegister.LOGINS,
@@ -17,7 +17,7 @@ export const fetchSession = ({ username, password }: Props) =>
       password,
     },
   });
-
+//this is mutation to use the fetch function
 export const useSessionMutation = () => {
   const { data, error, isLoading: loading, mutate } = useMutation(fetchSession);
   useGoToLogin({ status: data?.status, error });

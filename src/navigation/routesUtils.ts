@@ -1,3 +1,4 @@
+//This file is avoid error and have all routes in the same
 enum RoutesName {
   "/" = "/",
   "/home" = "/home",

@@ -3,6 +3,7 @@ import { useGoToLogin } from "../../utils/hooks";
 import endpointRegister from "../api/endpointRegister";
 import fetchCreator from "../api/fetchCreator";
 
+//This is the function to make the request(POST)
 export const createBooksMarks = ({
   resourceId,
   resourceType,
@@ -19,7 +20,7 @@ export const createBooksMarks = ({
       path: path,
     },
   });
-
+//This is the mutation for create a bookMark
 export const useCreateBooksMarksMutation = () => {
   const {
     data,
@@ -31,12 +32,14 @@ export const useCreateBooksMarksMutation = () => {
   return { loading, data, error, mutate };
 };
 
+//This is the function to make the request(DELETE)
 export const deleteBooksMarks = ({ id }: { id: string }) =>
   fetchCreator({
     path: `${endpointRegister.DELETE_BOOK_MARK}/${id}`,
     method: "DELETE",
   });
 
+  //this is mutation for DELETE
 export const useDeleteBooksMarksMutation = () => {
   const {
     data,
@@ -48,6 +51,7 @@ export const useDeleteBooksMarksMutation = () => {
   return { loading, data, error, mutate };
 };
 
+//This is the function to make the request(PUT)
 export const updateBooksMarks = ({
   id,
   abstract,
@@ -62,7 +66,7 @@ export const updateBooksMarks = ({
     },
     method: "PUT",
   });
-
+//this is mutation for Update
 export const useUpdateBooksMarksMutation = () => {
   const {
     data,

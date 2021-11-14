@@ -8,6 +8,7 @@ import { useGetAllBooksMarksQuery } from "../modules/bookmarks/query";
 import RoutesName from "../navigation/routesUtils";
 import { defaultAllBookmarks } from "../utils/defaultData";
 
+// Container of list of card
 const HomeContainer = () => {
   const { push } = useHistory();
   const { mutate, loading: loadingDelete } = useDeleteBooksMarksMutation();

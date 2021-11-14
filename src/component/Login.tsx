@@ -65,8 +65,8 @@ interface Props {
   loading: boolean;
   error?: string;
 }
-
-export default function Login({ handleLogin, loading, error = "" }: Props) {
+// Form for the user made Login
+const Login=({ handleLogin, loading, error = "" }: Props)=> {
   const classes = styles();
   const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
     useFormik({
@@ -145,3 +145,4 @@ export default function Login({ handleLogin, loading, error = "" }: Props) {
     </div>
   );
 }
+export default Login

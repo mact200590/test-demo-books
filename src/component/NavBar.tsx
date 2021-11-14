@@ -55,7 +55,7 @@ const styles = makeStyles((theme: Theme) => ({
 interface Props {
   img: string;
 }
-
+// The Navbar of the app
 const Navbar = ({ img }: Props) => {
   const { replace, push } = useHistory();
   const hide = useMediaQuery(theme.breakpoints.down("xs"));

@@ -6,7 +6,7 @@ import { useSessionMutation } from "../modules/auth/mutations";
 import { CACHE_KEYS } from "../modules/cache/cacheKeys";
 import RoutesName from "../navigation/routesUtils";
 import { StorageKeys } from "../utils/asyncStorage";
-
+//Container of Login component
 export const LoginContainer = () => {
   const [error, setError] = useState<string>("");
   const { replace } = useHistory();

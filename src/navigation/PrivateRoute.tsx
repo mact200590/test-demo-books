@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect, Route, RouteProps } from "react-router-dom";
-
+// Conditional routes , the user have to be login
 function PrivateRoute({ children, path, ...rest }: RouteProps) {
   return (
     <Route path={path} {...rest}>

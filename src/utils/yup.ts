@@ -1,4 +1,6 @@
 import * as Yup from "yup";
+
+// this is for validations
 export const createBookMarkSchema = Yup.object().shape({
       resourceId: Yup.string()
       .label("Resource")

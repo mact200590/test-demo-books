@@ -78,6 +78,8 @@ interface Props {
   ) => void;
   isNew: boolean;
 }
+
+// Form to create and edit the new BookMark
 const CreateBookMark = ({
   handleCreateBookMark,
   loading,

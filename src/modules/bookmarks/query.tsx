@@ -3,7 +3,7 @@ import fetchCreator from "../api/fetchCreator";
 import { CACHE_KEYS } from "../cache/cacheKeys";
 import { useGoToLogin } from "../../utils/hooks";
 import { defaultAllBookmarks } from "../../utils/defaultData";
-
+//This is function request bookmarks (GET)
 const fetchAllBooksMarks = () =>
   fetchCreator({
     path: "/bookmarks",
@@ -15,6 +15,7 @@ type BookMarkExtended=Definitions.BookMarks &{
   author:{"user-name":string}
 }
 
+// this is the query get all bookMarks
 export const useGetAllBooksMarksQuery = () => {
   const {
     data,

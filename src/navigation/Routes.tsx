@@ -9,7 +9,7 @@ import RoutesName from "./routesUtils";
 
 const LoginPage = lazy(() => import("../page/LoginPage"));
 const Homepage = lazy(() => import("../page/Homepage"));
-
+// This is the file for routes
 const Routes = () => (
   <Suspense
     fallback={

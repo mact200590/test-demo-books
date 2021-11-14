@@ -1,5 +1,5 @@
 import { createTheme } from "@material-ui/core/styles";
-
+//This is the theme for the app
 const theme = createTheme({
   typography: {
     fontFamily: ["Nunito", "sans-serif"].join(","),
