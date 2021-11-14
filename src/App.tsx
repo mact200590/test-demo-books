@@ -5,7 +5,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import Routes from "./navigation/Routes";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClientProvider } from "react-query";
-import { queryCLient } from "./cache/queryCLient";
+import { queryCLient } from "./modules/cache/queryCLient";
 import { ReactQueryDevtools } from "react-query/devtools";
 import theme from "./styles/theme";
 
