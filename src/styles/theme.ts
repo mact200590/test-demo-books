@@ -26,13 +26,5 @@ const theme = createTheme({
       main: "#004AAD",
     },
   },
-  // overrides: {
-  //   MuiPopover: {
-  //     root: {
-  //       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  //       zIndex: "1500 !important" as any,
-  //     },
-  //   },
-  // },
 });
 export default theme;
