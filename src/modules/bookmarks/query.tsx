@@ -1,24 +1,43 @@
 import { useQuery } from "react-query";
-import fetchCreator from "../../api/fetchCreator";
-import { CACHE_KEYS } from "../../cache/cacheKeys";
-import { CardBookMarksType } from "../../utils/types";
-
+import fetchCreator from "../api/fetchCreator";
+import { CACHE_KEYS } from "../cache/cacheKeys";
+import { useGoToLogin } from "../../utils/hooks";
+import { defaultAllBookmarks } from "../../utils/defaultData";
 
 const fetchAllBooksMarks = () =>
   fetchCreator({
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     path: "/bookmarks",
     method: "GET",
   });
 
-// eslint-disable-next-line import/prefer-default-export
+
+type BookMarkExtended=Definitions.BookMarks &{
+  author:{"user-name":string}
+}
+
 export const useGetAllBooksMarksQuery = () => {
-  const { data, error, isLoading: loading, refetch } = useQuery<CardBookMarksType[]>(
+  const {
+    data,
+    error,
+    isLoading: loading,
+    refetch,
+  } = useQuery<{ jsonRes: BookMarkExtended[]; status: number }>(
     [CACHE_KEYS.BooksMarks.ALL_BOOKS_MARKS],
-    () => fetchAllBooksMarks(),
+    () => fetchAllBooksMarks()
   );
-  
-  return { loading, data, error, refetch };
+  useGoToLogin({ status: data?.status, error });
+  const dataMapped = (data?.jsonRes || defaultAllBookmarks).map((d) => ({
+    ...d,
+    author: { ...d.author, userName: d.author["user-name"] },
+  }));
+  return {
+    loading,
+    data: dataMapped,
+    error,
+    refetch,
+  };
 };
 
-  
+
+
+
