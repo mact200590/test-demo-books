@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Login } from "../component";
+import { Login } from "../components";
 import { useHistory } from "react-router-dom";
 import { queryCLient } from "../modules/cache/queryCLient";
 import { useSessionMutation } from "../modules/auth/mutations";

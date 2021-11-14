@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from "react";
-import NavbarContainer from "../../container/NavbarContainer";
+import NavbarContainer from "../../containers/NavbarContainer";
 
 const PageWrapper = ({ children }: PropsWithChildren<{}>) => (
   <div>

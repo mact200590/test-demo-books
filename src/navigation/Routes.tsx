@@ -1,14 +1,14 @@
 import React, { lazy, Suspense } from "react";
 import { Switch } from "react-router-dom";
-import { LoadingWrapper } from "../component";
-import { CreateBookMarkPage } from "../page/CreateBookMarkPage";
+import { LoadingWrapper } from "../components";
+import { CreateBookMarkPage } from "../pages/CreateBookMarkPage";
 
 import LoginRoute from "./LoginRoute";
 import PrivateRoute from "./PrivateRoute";
 import RoutesName from "./routesUtils";
 
-const LoginPage = lazy(() => import("../page/LoginPage"));
-const Homepage = lazy(() => import("../page/Homepage"));
+const LoginPage = lazy(() => import("../pages/LoginPage"));
+const Homepage = lazy(() => import("../pages/Homepage"));
 // This is the file for routes
 const Routes = () => (
   <Suspense

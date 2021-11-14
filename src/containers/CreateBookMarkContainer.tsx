@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { CACHE_KEYS } from "../modules/cache/cacheKeys";
 import { queryCLient } from "../modules/cache/queryCLient";
-import { CreateBookMark } from "../component";
+import { CreateBookMark } from "../components";
 import {
   useCreateBooksMarksMutation,
   useUpdateBooksMarksMutation,

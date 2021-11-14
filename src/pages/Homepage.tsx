@@ -1,5 +1,5 @@
-import HomeContainer from "../container/HomeContainer";
-import { PageWrapper } from "../component";
+import HomeContainer from "../containers/HomeContainer";
+import { PageWrapper } from "../components";
 
 export const Homepage = () => {
   return (

@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { CACHE_KEYS } from "../modules/cache/cacheKeys";
 import { queryCLient } from "../modules/cache/queryCLient";
-import { Home } from "../component";
+import { Home } from "../components";
 import { useDeleteBooksMarksMutation } from "../modules/bookmarks/mutation";
 import { useGetAllBooksMarksQuery } from "../modules/bookmarks/query";
 import RoutesName from "../navigation/routesUtils";

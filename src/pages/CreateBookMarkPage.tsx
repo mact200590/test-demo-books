@@ -1,6 +1,6 @@
 import React from "react";
-import CreateBookMarkContainer from "../container/CreateBookMarkContainer";
-import { PageWrapper } from "../component";
+import CreateBookMarkContainer from "../containers/CreateBookMarkContainer";
+import { PageWrapper } from "../components";
 
 export const CreateBookMarkPage = () => {
   return (
