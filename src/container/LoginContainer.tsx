@@ -1,23 +1,21 @@
 import React, { useCallback, useState } from "react";
-import Login from "../auth/Login";
+import { Login } from "../component";
 import { useHistory } from "react-router-dom";
-import { queryCLient } from "../cache/queryCLient";
+import { queryCLient } from "../modules/cache/queryCLient";
 import { useSessionMutation } from "../modules/auth/mutations";
-import { StorageKeys } from "../storage/StorageKeys";
-import { CACHE_KEYS } from "../cache/cacheKeys";
+import { CACHE_KEYS } from "../modules/cache/cacheKeys";
 import RoutesName from "../navigation/routesUtils";
-import { DataUser } from "../utils/types";
-
-
+import { StorageKeys } from "../utils/asyncStorage";
 
 export const LoginContainer = () => {
-  const [error, setError] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
   const { replace } = useHistory();
 
-  const { mutate, loading  } = useSessionMutation();
+  const { mutate, loading } = useSessionMutation();
+
   const onSuccess = useCallback(
-    (response: any) => {
-      const { tokens, data, message } = response;
+    (response: { jsonRes: any; status: number } | undefined) => {
+      const tokens = response?.jsonRes?.tokens;
       if (tokens) {
         queryCLient.clear();
         localStorage.setItem(StorageKeys.SESSION_TOKEN, tokens["access-token"]);
@@ -25,18 +23,19 @@ export const LoginContainer = () => {
           StorageKeys.REFRESH_TOKEN,
           tokens["refresh-token"]
         );
-        queryCLient.setQueryData<DataUser>(
+        queryCLient.setQueryData<Definitions.User>(
           [CACHE_KEYS.UserData.USER_DATA],
-          data
+          response?.jsonRes.data
         );
-        replace(`${RoutesName["/home"]}`);
-      }
-      if (message) {
-        setError(true)
+        replace(RoutesName["/home"]);
       }
     },
     [replace]
   );
+
+  const onError = useCallback((err: any) => {
+    setError((err as Error).message);
+  }, []);
 
   const handleLogin = useCallback(
     (username: string, password: string) => {
@@ -45,14 +44,17 @@ export const LoginContainer = () => {
           username,
           password,
         },
-        { onSuccess }
+        {
+          onSuccess,
+          onError,
+        }
       );
     },
-    [mutate, onSuccess]
+    [mutate, onError, onSuccess]
   );
   return (
     <div>
-      <Login handleLogin={handleLogin} loading={loading} error={error}/>
+      <Login handleLogin={handleLogin} loading={loading} error={error} />
     </div>
   );
 };
